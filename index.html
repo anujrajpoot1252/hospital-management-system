@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HDMIS Home</title>
+<title>Global Hospitals</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Hospital Management System</h1>
+<header>
+    <h2> HOSPITALS</h2>
+    <nav>
+        <a href="#">HOME</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">CONTACT</a>
+    </nav>
+</header>
 
-<div class="container">
+<div class="main">
 
-    <div class="card">
-        <img src="patient.png" width="150">
-        <h2>Patient Registration</h2>
-        <a href="patient_registration.html">
-            <button>Register</button>
-        </a>
+    <div class="left">
+        <h1>🚀</h1>
+        <h2>Welcome</h2>
     </div>
 
-    <div class="card">
-        <img src="doctor.png" width="150">
-        <h2>Doctor Login</h2>
-        <a href="doctor_login.html">
-            <button>Login</button>
-        </a>
-    </div>
+    <div class="right">
 
+        <div class="tabs">
+            <button onclick="location.href='patient_registration.html'">Patient</button>
+            <button onclick="location.href='doctor_login.html'">Doctor</button>
+            <button>Admin</button>
+        </div>
+
+        <h2>Register as Patient</h2>
+
+        <form action="register.php" method="POST" class="form">
+            <input type="text" name="fname" placeholder="First Name *" required>
+            <input type="text" name="lname" placeholder="Last Name *" required>
+            <input type="email" name="email" placeholder="Your Email *" required>
+            <input type="text" name="phone" placeholder="Your Phone *" required>
+            <input type="password" name="pass" placeholder="Password *" required>
+            <input type="password" name="cpass" placeholder="Confirm Password *" required>
+
+            <div class="gender">
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <button type="submit" class="registerbtn">Register</button>
+        </form>
+
+    </div>
 </div>
 
 </body>

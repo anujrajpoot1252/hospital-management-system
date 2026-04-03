@@ -1,83 +1,84 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    text-decoration: none;
-}
 body{
-    background-color: #f2f2f2;
-}
-.navbar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;body{
+    margin:0;
     font-family: Arial;
-    text-align:center;
-    background:#f2f2f2;
 }
 
-.container{
+/* HEADER */
+header{
     display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    color:white;
+    background:linear-gradient(to right,#6a11cb,#2575fc);
+}
+
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+}
+
+/* MAIN AREA */
+.main{
+    height:90vh;
+    display:flex;
+    background:linear-gradient(to right,#6a11cb,#2575fc);
+}
+
+/* LEFT SIDE */
+.left{
+    width:40%;
+    color:white;
+    display:flex;
+    flex-direction:column;
     justify-content:center;
-    gap:50px;
-    margin-top:50px;
+    align-items:center;
 }
 
-.card{
-    background:white;
-    padding:20px;
+/* RIGHT CARD */
+.right{
+    width:60%;
+    background:#eee;
+    border-top-left-radius:80px;
+    border-bottom-left-radius:80px;
+    padding:40px;
+}
+
+/* TABS */
+.tabs button{
+    padding:8px 20px;
+    border:none;
+    background:purple;
+    color:white;
+    border-radius:20px;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+/* FORM */
+.form{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form input{
+    padding:10px;
     border-radius:10px;
-    box-shadow:0 0 10px gray;
+    border:1px solid gray;
 }
 
-button{
-    padding:10px 20px;
-    background:blue;
+.gender{
+    grid-column:span 2;
+}
+
+.registerbtn{
+    grid-column:span 2;
+    padding:10px;
+    background:purple;
     color:white;
     border:none;
-    border-radius:5px;
-}
-    background: #80c4f1;
-    
-}       
-.menu{
-    display: flex;
-    justify-content: center;
-    
-    gap: 40px;
-    margin-left: 30px;
-}
-.menu a+a{
-    margin-left: 90px;
-    margin-right: 40px;
-   
-}
-h2{
-    color: #fff;
-    font-size: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
-    
-}
-span a{
-    color:red;
-}
-.font{
-    font-weight: bold;
-    font-size: 20px ;
-}
-.cards{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 50px;
-}
-button{
-    background-color: #80c4f1;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+    border-radius:20px;
+    font-size:16px;
 }
