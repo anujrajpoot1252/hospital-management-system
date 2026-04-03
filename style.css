@@ -10,7 +10,33 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 10vh;body{
+    font-family: Arial;
+    text-align:center;
+    background:#f2f2f2;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+button{
+    padding:10px 20px;
+    background:blue;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
     background: #80c4f1;
     
 }       
