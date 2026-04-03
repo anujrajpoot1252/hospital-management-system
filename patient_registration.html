@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Hospitals</title>
+<title>Patient Registration</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <h2> HOSPITALS</h2>
+    <h2>HOSPITALS</h2>
     <nav>
-        <a href="#">HOME</a>
-        <a href="#">ABOUT US</a>
-        <a href="#">CONTACT</a>
+        <a href="index.html">HOME</a>
     </nav>
 </header>
 
 <div class="main">
 
     <div class="left">
-        <h2>Welcome</h2>
+    
+        <h2>Patient Portal</h2>
     </div>
 
     <div class="right">
@@ -27,10 +26,9 @@
         <div class="tabs">
             <button onclick="location.href='patient_registration.html'">Patient</button>
             <button onclick="location.href='doctor_login.html'">Doctor</button>
-            <button>Admin</button>
         </div>
 
-        <h2>Register as Patient</h2>
+        <h2>Patient Registration</h2>
 
         <form action="register.php" method="POST" class="form">
             <input type="text" name="fname" placeholder="First Name *" required>
