@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doctor Login</title>
+
+<style>
+body{
+font-family: Arial;
+background:#111;
+color:white;
+text-align:center;
+}
+header h2{
+    color:#711bd3;
+}
+header a{
+    color:#33cc33;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.main{
+display:flex;
+justify-content:center;
+align-items:center;
+height:80vh;
+}
+
+.form-box{
+background:#222;
+padding:40px;
+border-radius:10px;
+width:300px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+padding:10px 20px;
+background:#33cc33;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
+    <a href="index.html">HOME</a>
+</header>
+
+<div class="main">
+
+    <div class="form-box">
+        <h2>Doctor Login</h2>
+
+        <form action="doctor_login.php" method="post">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button>Login</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
