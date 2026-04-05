@@ -1,10 +1,3 @@
-
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
 CREATE TABLE `patient` (
   `Name` text NOT NULL,
   `Email` varchar(100) NOT NULL,
@@ -15,7 +8,3 @@ CREATE TABLE `patient` (
   `disease` text NOT NULL,
   `medical_history` text NOT NULL,
   `gender` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-COMMIT;
-
-
