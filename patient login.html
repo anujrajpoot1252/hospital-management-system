@@ -10,13 +10,16 @@ body{
     color:white;
     text-align:center;
 }
-header h2{
+
+header{
+    font-size:28px;
+    margin-top:20px;
     color:#711bd3;
 }
-header a{
+
+a{
     color:#33cc33;
     text-decoration:none;
-    margin-left:20px;
 }
 
 .login-box{
@@ -49,21 +52,58 @@ button{
 button:hover{
     background:#28a428;
 }
+
+#showCaptcha{
+    letter-spacing:5px;
+    color:#33cc33;
+}
 </style>
 
+<script>
+// 4 digit captcha generate
+function generateCaptcha(){
+    var captcha = Math.floor(1000 + Math.random()*9000);
+    document.getElementById("showCaptcha").innerHTML = captcha;
+    document.getElementById("realCaptcha").value = captcha;
+}
+
+// check captcha
+function checkCaptcha(){
+    var real = document.getElementById("realCaptcha").value;
+    var user = document.getElementById("userCaptcha").value;
+
+    if(real != user){
+        alert("Wrong Captcha ❌");
+        return false;
+    }
+    return true;
+}
+</script>
+
 </head>
-<body>
+
+<body onload="generateCaptcha()">
 
 <header>Hospital Management System</header>
+<br>
 <a href="index.html">HOME</a>
 
 <div class="login-box">
     <h2>Patient Login</h2>
 
-    <form action="patient_login.php" method="post">
+    <form action="patient login.php" method="post" onsubmit="return checkCaptcha()">
+
         <input type="email" name="email" placeholder="Enter Email" required><br>
-        
+
+        <h3>Enter captcha </h3>
+        <h1 id="showCaptcha"></h1>
+
+        <input type="text" id="userCaptcha" placeholder="Enter Number" required>
+        <input type="hidden" id="realCaptcha">
+
+        <br>
         <button type="submit">Login</button>
+
     </form>
 </div>
 
