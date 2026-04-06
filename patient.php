@@ -21,7 +21,7 @@ $gender = $_POST['gender'];
 
 // Insert query
 $sql = "INSERT INTO patient (Name, Email, Age, Phone, weight, `Blood_group`, disease, `medical_history`, gender)
-VALUES ('$name', '$email', '$age', '$phone', '$weight', '$bgroup', '$disease', '$history', 'gender')";
+VALUES ('$name', '$email', '$age', '$phone', '$weight', '$bgroup', '$disease', '$history', '$gender')";
 if(isset($_POST['gender'])){
     $gender = $_POST['gender'];
 } else {
