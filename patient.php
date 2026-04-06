@@ -17,15 +17,25 @@ $weight = $_POST['weight'];
 $bgroup = $_POST['bgroup'];
 $disease = $_POST['disease'];
 $history = $_POST['history'];
+$new_password = $_POST['New_password'];
+$confirm_password = $_POST['Confirm_password'];
 $gender = $_POST['gender'];
 
 // Insert query
-$sql = "INSERT INTO patient (Name, Email, Age, Phone, weight, `Blood_group`, disease, `medical_history`, gender)
-VALUES ('$name', '$email', '$age', '$phone', '$weight', '$bgroup', '$disease', '$history', '$gender')";
+$sql = "INSERT INTO patient (Name, Email, Age, Phone, weight, `Blood_group`, disease, `medical_history`, `New_password`, `Confirm_password`, gender)
+VALUES ('$name', '$email', '$age', '$phone', '$weight', '$bgroup', '$disease', '$history',' $new_password ', '$confirm_password' ,'$gender' )";
 if(isset($_POST['gender'])){
     $gender = $_POST['gender'];
 } else {
     $gender ="";
+}
+if ($new_password === $confirm_password) {
+    // Passwords match, proceed with registration
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    // You can store $hashed_password in the database instead of the plain password
+} else {
+    echo "❌ Passwords do not match. Please try again.";
+    exit();
 }
 
 // Execute query
