@@ -34,15 +34,15 @@ if ($new_password === $confirm_password) {
     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
     // You can store $hashed_password in the database instead of the plain password
 } else {
-    echo "❌ Passwords do not match. Please try again.";
+    echo "Passwords do not match. Please try again.";
     exit();
 }
 
 // Execute query
 if (mysqli_query($conn, $sql)) {
-    echo "✅ Data inserted successfully";
+    echo "Data inserted successfully";
 } else {
-    echo "❌ Error: " . mysqli_error($conn);
+    echo "Error: " . mysqli_error($conn);
 }
 
 // Close connection
