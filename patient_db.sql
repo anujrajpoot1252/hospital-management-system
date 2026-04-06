@@ -7,4 +7,6 @@ CREATE TABLE `patient` (
   `Blood_group` varchar(4) NOT NULL,
   `disease` text NOT NULL,
   `medical_history` text NOT NULL,
-  `gender` text NOT NULL
+  `gender` text NOT NULL,
+  `password` varchar(255) NOT NULL
+);
