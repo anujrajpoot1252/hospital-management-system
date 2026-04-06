@@ -35,20 +35,23 @@ function checkCaptcha(){
 <div class="login-box">
     <h2>Patient Login</h2>
 
-    <form action="patient login.php" method="post" onsubmit="return checkCaptcha()">
+    <form action="patient_login.php" method="post" onsubmit="return checkCaptcha()">
 
-        <input type="email" name="email" placeholder="Enter Email" required><br>
+    <input type="email" name="email" placeholder="Enter Email" required><br><br>
 
-        <h3>Enter captcha </h3>
-        <h1 id="showCaptcha"></h1>
+    <input type="password" name="password" placeholder="Enter Password" required><br><br>
 
-        <input type="text" id="userCaptcha" placeholder="Enter captcha" required>
-        <input type="hidden" id="realCaptcha">
+    <h3>Enter captcha</h3>
+    <h1 id="showCaptcha"></h1>
 
-        <br>
-        <button type="submit">Login</button>
+    <input type="text" name="userCaptcha" id="userCaptcha" placeholder="Enter captcha" required>
+    
+    <input type="hidden" name="realCaptcha" id="realCaptcha">
 
-    </form>
+    <br><br>
+    <button type="submit">Login</button>
+
+</form>
 </div>
 
 </body>
