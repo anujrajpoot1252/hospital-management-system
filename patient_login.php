@@ -20,7 +20,7 @@ $userCaptcha = $_POST['userCaptcha'] ?? "";   // NEW
 
 //  CAPTCHA VERIFY
 if($realCaptcha != $userCaptcha){
-    echo "❌ Wrong Captcha";
+    echo "Wrong Captcha";
     exit();
 }
 
