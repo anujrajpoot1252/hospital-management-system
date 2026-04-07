@@ -3,14 +3,15 @@
 <head>
 <title>Patient Registration</title>
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<header>
+<div class="header">
 <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
 <a href="index.html">HOME</a>
-</header>
+</div>
 
 <div class="main">
 
@@ -20,16 +21,18 @@
 
 <div class="right">
 
-<h2>Patient Registration</h2>
+<h3>Patient Registration</h3>
 
-<form action="patient.php" method="POST" class="form" onsubmit="return checkPassword()">
+<form action="patient.php" method="POST" class="form">
 
 <input type="text" name="name" placeholder="Name" required><br>
 <input type="email" name="email" placeholder="Email" required><br>
+
 <input type="number" name="age" placeholder="Age" required><br>
 <input type="text" name="phone" placeholder="Phone" required><br>
 <input type="text" name="weight" placeholder="Weight" required><br>
 
+<!-- Blood Group Dropdown -->
 <select name="bgroup" required>
     <option value="">Select Blood Group</option>
     <option value="A+">A+</option>
@@ -44,9 +47,9 @@
 
 <input type="text" name="disease" placeholder="Disease" required><br>
 <input type="text" name="history" placeholder="History" required><br>
+    <input type="password" name="New password" placeholder="New Password" required><br>
+<input type="password" name="Confirm password" placeholder="Confirm Password" required><br>
 
-<input type="password" id="password" name="password" placeholder="Create Password" required><br>
-<input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
 
 <div class="gender">
 <input type="radio" name="gender" value="Male" required> Male
@@ -59,20 +62,6 @@
 
 </div>
 </div>
-
-<script>
-// Yeh function password check karta hai
-function checkPassword() {
-    var pass = document.getElementById("password").value;
-    var confirm = document.getElementById("confirm_password").value;
-    
-    if (pass !== confirm) {
-        alert("Passwords match nahi kar rahe hain!");
-        return false;   // Form submit nahi hoga
-    }
-    return true;
-}
-</script>
 
 </body>
 </html>
