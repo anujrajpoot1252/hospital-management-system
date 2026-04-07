@@ -177,30 +177,24 @@ button:hover{
     color:white;
 }
 /* CSS for patient registration page */
-body{
-    margin:0;
-    font-family: Arial;
-    background:#f7f5f5;
-    color:white;
-}
 
-header{
+.header{
     background:rgb(59, 141, 248);
-    padding:10px;
+    padding:30px;
     text-align:center;
 }
-header h2{
+.header h2{
     color:white;
     font-size: 30px;
 }
-header a{
-    color:red;
+.header a{
+    color:rgb(221, 8, 8);
     text-decoration:none;
     margin-left:20px;
 }
 .main{
     display:flex;
-    height:90vh;
+    height:110vh;
 }
 
 .left{
@@ -254,5 +248,5 @@ header a{
 }
 .right h3{
     color:black;
-    font-size: 18px;
+    font-size: 20px;
 }
