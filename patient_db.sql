@@ -11,4 +11,6 @@ CREATE TABLE IF NOT EXISTS patient (
     gender VARCHAR(10) NOT NULL,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    reset_token VARCHAR(255) NULL,
+    reset_expiry DATETIME NULL
 );
