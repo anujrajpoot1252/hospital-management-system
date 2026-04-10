@@ -242,9 +242,10 @@ header a{
 
 .registerbtn{
     background:#33cc33;
-    padding:12px;a
+    padding:12px;
     border:none;
-    width:270px;* {
+    width:270px;
+*{
   margin: 0;
   padding: 0;
   text-decoration: none;
