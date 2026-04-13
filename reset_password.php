@@ -60,6 +60,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
+<div class="container">
 
 <h2>Set New Password</h2>
 
@@ -68,6 +69,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
 <button type="submit">Update Password</button>
 </form>
-
+</div>
 </body>
 </html>
