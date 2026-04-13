@@ -59,9 +59,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <title>Reset Password</title>
 </head>
 <link rel="stylesheet" href="style.css">
-
 <body>
-<div class="container">
+
 <h2>Set New Password</h2>
 
 <form method="post">
@@ -69,6 +68,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
 <button type="submit">Update Password</button>
 </form>
-</div>
+
 </body>
 </html>
