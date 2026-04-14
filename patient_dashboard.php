@@ -1,71 +1,119 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
-// Agar login nahi hai toh redirect
-if (!isset($_SESSION['email'])) {
-    header("Location: patient_dashboard.html");
+// Correct session check
+if (!isset($_SESSION['patient_email'])) {
+    header("Location:  patient_login.html");
     exit();
 }
 
-$email = $_SESSION['Email'];
+$email = $_SESSION['patient_email'];
 
 // Database connection
 $conn = mysqli_connect("localhost", "root", "", "patient_db");
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed");
 }
 
-// Data fetch
-$sql = "SELECT * FROM patient WHERE email = '$Email'";
-$result = mysqli_query($conn, $sql);
+// Fetch user data
+$stmt = $conn->prepare("SELECT * FROM patient WHERE Email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
 
-
-if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
-    token_name(exif_imagetype($Email));
-}
-
-$row = mysqli_fetch_assoc($result);
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
 
 if (!$row) {
     die("No data found");
 }
 
-else {
-    $email   = $row['Email'];
-    $age    = $row['Age'];
-    $gender = $row['gender'];
-    $weight = $row['Weight'];
-    $blood_group = $row['Blood_Group'];
-    $disease = $row['disease'];
-    $history = $row['medical_History'];
-  
-}
+// Assign data safely
+$name = htmlspecialchars($row['Name'] ?? '');
+$age = htmlspecialchars($row['Age'] ?? '');
+$gender = htmlspecialchars($row['gender'] ?? '');
+$phone = htmlspecialchars($row['Phone'] ?? '');
+$weight = htmlspecialchars($row['Weight'] ?? '');
+$blood_group = htmlspecialchars($row['Blood_Group'] ?? '');
+$disease = htmlspecialchars($row['disease'] ?? '');
+$history = htmlspecialchars($row['medical_History'] ?? '');
+?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
 
-$stmt = $conn->prepare("SELECT * FROM patient WHERE email = ?");
-$stmt->bind_param("s", $email);
-if ($stmt) {
-    $stmt->execute();
-}
-else {
-    echo "statemrntent preparation failed: " . $conn->error;
-}
+        header {
+            background-color: #0097a7;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
 
- if ($stmt->execute()) {
-        echo "<script>
-                alert('logout successful!');
-                window.location.href = 'patient_dashboard.html';
-              </script>";
-    } else {
-        echo "<script>alert('Logout mein error aa gaya. Dobara try karo.');</script>";
-    }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #75f7f0;
+            border-radius: 8px;
+        }
 
-    $stmt->close();
+        .btn {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-mysqli_close($conn);
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
+</header>
+
+<div class="dashboard-container">
+    <h2>Welcome <?php echo $name; ?></h2>
+
+    <p>Email: <b><?php echo $email; ?></b></p>
+    <p>Age: <b><?php echo $age; ?></b></p>
+    <p>Gender: <b><?php echo $gender; ?></b></p>
+    <p>Phone: <b><?php echo $phone; ?></b></p>
+    <p>Weight: <b><?php echo $weight; ?></b></p>
+    <p>Blood Group: <b><?php echo $blood_group; ?></b></p>
+    <p>Disease: <b><?php echo $disease; ?></b></p>
+    <p>Medical History: <b><?php echo $history; ?></b></p>
+
+    <button class="btn btn-primary" onclick="alert('Appointment coming soon')">Book Appointment</button>
+    <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
+
+    <a href="logout.php">
+        <button class="btn btn-danger">Logout</button>
+    </a>
+</div>
+
+</body>
+</html>
+
+<?php
+$stmt->close();
+$conn->close();
 ?>
