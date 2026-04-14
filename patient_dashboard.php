@@ -34,9 +34,9 @@ $age = htmlspecialchars($row['Age'] ?? '');
 $gender = htmlspecialchars($row['gender'] ?? '');
 $phone = htmlspecialchars($row['Phone'] ?? '');
 $weight = htmlspecialchars($row['Weight'] ?? '');
-$blood_group = htmlspecialchars($row['Blood_Group'] ?? '');
+$blood_group = htmlspecialchars($row['Blood_group'] ?? '');
 $disease = htmlspecialchars($row['disease'] ?? '');
-$history = htmlspecialchars($row['medical_History'] ?? '');
+$history = htmlspecialchars($row['medical_history'] ?? '');
 ?>
 
 <!DOCTYPE html>
