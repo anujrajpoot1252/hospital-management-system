@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard - HMS</title>
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+<style>
+    div.dashboard-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #75f7f0;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+</style>
+<header>
+    <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
+    <a href="index.html" style="color:rgb(190, 96, 96); margin-left:20px;">HOME</a>
+</header>
+<form action = "patient_dashboard.php" method = "post">
+<div class="dashboard-container">
+    <h2 class="welcome">Welcome <?php echo($name); ?> </h2>
+
+    <div class="profile-card">
+        <h3>Your Profile Information</h3>
+        
+        
+            Email: 
+            <span><?php echo ($Email); ?></span>
+       <br>
+        
+           Age:
+            <span><?php echo $Age; ?></span>
+      <br>
+       
+           Gender: 
+            <span><?php echo ($gender); ?></span>
+       <br>
+     
+           Phone:
+            <span><?php echo ($Phone); ?></span>
+        <br>
+       
+           Weight: 
+            <span><?php echo $Weight; ?> </span>
+        <br>
+      
+           Blood Group:
+            <span><?php echo ($Blood_group); ?></span>
+       <br>
+
+           Disease: 
+            <span><?php echo ($disease); ?></span>
+      <br>
+
+       
+           Medical History:
+            <span><?php echo ($medical_History); ?></span>
+      
+      <br>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn btn-primary" onclick="alert('Appointment booking feature coming soon...')">Book Appointment</button>
+        <button class="btn btn-primary" onclick="alert('Medical Reports coming soon...')"> View Reports</button>
+        
+        <a href="logout.php"><button class="btn btn-danger">Logout</button></a>
+    </div>
+</div>
+</form>
+</body>
+</html>
