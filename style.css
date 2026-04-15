@@ -291,3 +291,43 @@ button {
     border: none;
     border-radius: 5px;
 }
+/* CSS for doctor registration */
+
+body {
+  font-family: Arial;
+  background: #f0f0f0;
+}
+
+/* Card box */
+.box {
+  width: 350px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #20cfcf;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Heading */
+.box h2 {
+  color: white;
+}
+
+/* Inputs */
+.box input {
+  width: 90%;
+  padding: 10px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Button */
+.box button {
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
