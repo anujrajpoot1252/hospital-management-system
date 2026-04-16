@@ -43,45 +43,7 @@ $history = htmlspecialchars($row['medical_history'] ?? '');
 <html>
 <head>
     <title>Patient Dashboard</title>
-    <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f2f2;
-        }
-
-        header {
-            background-color: #0097a7;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .dashboard-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #75f7f0;
-            border-radius: 8px;
-        }
-
-        .btn {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: red;
-            color: white;
-        }
-    </style>
+       
 </head>
 
 <body>
