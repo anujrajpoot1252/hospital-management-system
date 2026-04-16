@@ -64,7 +64,7 @@ $history = htmlspecialchars($row['medical_history'] ?? '');
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
 
-    <button class="btn btn-primary" onclick="alert('Appointment coming soon')">Book Appointment</button>
+    <a href="patient_appointment.html">Book Appointment</a>
     <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
 
     <a href="logout.php">
