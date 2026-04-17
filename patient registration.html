@@ -52,7 +52,13 @@
 <input type="radio" name="gender" value="Male" required> Male
 <input type="radio" name="gender" value="Female" required> Female
 </div>
+    
+<label>Upload Photo</label>
+<input type="file" accept="image/*" capture="camera" onchange="previewImage(event)" required>
 
+<br><br>
+<img id="photoPreview" width="120" style="display:none; border-radius:10px;">
+    
 <button type="submit" class="registerbtn">Register</button>
 
 </form>
