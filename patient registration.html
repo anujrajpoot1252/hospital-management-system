@@ -52,9 +52,15 @@
 <input type="radio" name="gender" value="Male" required> Male
 <input type="radio" name="gender" value="Female" required> Female
 </div>
-    
-<label>Upload Photo</label><br>
-<input type="file" accept="image/*" capture="camera" required><br><br>
+
+<input type="file" onchange="showName(this)">
+<span id="fileName">No file chosen</span>
+
+<script>
+function showName(input) {
+  document.getElementById("fileName").innerText = input.files[0].name;
+}
+</script>
     
 <button type="submit" class="registerbtn">Register</button>
 
