@@ -1,90 +1,66 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 
-if (!isset($_SESSION['admin_email'])) {
-    header("Location: admin.html");
+
+if (!isset($_SESSION['admin'])) {
+    header("Location: admin_login.php");
     exit();
 }
-
-$admin_email = $_SESSION['admin_email'];
-
-$conn = mysqli_connect("localhost", "root", "", "Admin");
-if (!$conn) {
-    die("Connection failed");
-}
-
-$result = mysqli_query($conn, "SELECT Name, Specialization, Experience, Email, Phone FROM doctor ORDER BY Name ASC");
 ?>
+
 <!DOCTYPE html>
-<html>  
+<html>
 <head>
+    
     <title>Admin Dashboard</title>
     <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f2f2;
-        }
-
-        header {
-            background-color: #0097a7;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .dashboard-container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #0097a7;
-            color: white;
-        }
+        body { font-family: Arial; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background: #007bff; color: white; }
+        .logout { float: right; padding: 10px 15px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome, Admin!</h1>
-        <a href="logout.php" style="color: white; float: right; margin-top: -40px;">Logout</a>
-    </header>
+    <h1>Welcome Admin - Doctors Dashboard</h1>
+    <a href="logout.php" class="logout">Logout</a>
 
-    <div class="dashboard-container">
-        <h2>Doctor List</h2>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Specialization</th>
-                <th>Experience (Years)</th>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['Name']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Specialization']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Experience']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Email']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Phone']); ?></td>
-                </tr>
-            <?php } ?>
-        </table>
-    </div>
+    <h2>Doctors List</h2>
+    <table>
+        <tr>
+           <th>ID</th>
+           <th>Password</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Experience (Years)</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Availability</th>
+        </tr>
+        <?php
+        $conn = mysqli_connect("localhost", "root", "", "Admin");
+        $sql = "SELECT * FROM doctor";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['ID'] . "</td>";
+                echo "<td>" . $row['Password'] . "</td>";
+                echo "<td>" . $row['Name'] . "</td>";
+                echo "<td>" . $row['Department'] . "</td>";
+                echo "<td>" . $row['Experience'] . "</td>";
+                echo "<td>" . $row['Phone'] . "</td>";
+                echo "<td>" . $row['Email'] . "</td>";
+                echo "<td>" . $row['Availability'] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>No doctors found in database.</td></tr>";
+        }
+        ?>
+    </table>
 </body>
 </html>
-<?php
-mysqli_close($conn);
