@@ -25,7 +25,7 @@ if (!isset($_SESSION['admin'])) {
 </head>
 <body>
     <h1>Welcome Admin - Doctors Dashboard</h1>
-    <a href="logout.php" class="logout">Logout</a>
+    <a href="admin_logout.php" class="logout">Logout</a>
 
     <h2>Doctors List</h2>
     <table>
