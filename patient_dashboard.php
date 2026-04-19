@@ -34,16 +34,54 @@ $age = htmlspecialchars($row['Age'] ?? '');
 $gender = htmlspecialchars($row['gender'] ?? '');
 $phone = htmlspecialchars($row['Phone'] ?? '');
 $weight = htmlspecialchars($row['Weight'] ?? '');
-$blood_group = htmlspecialchars($row['Blood_group'] ?? '');
+$blood_group = htmlspecialchars($row['Blood_Group'] ?? '');
 $disease = htmlspecialchars($row['disease'] ?? '');
-$history = htmlspecialchars($row['medical_history'] ?? '');
+$history = htmlspecialchars($row['medical_History'] ?? '');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Patient Dashboard</title>
-       
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #0097a7;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #75f7f0;
+            border-radius: 8px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,7 +102,7 @@ $history = htmlspecialchars($row['medical_history'] ?? '');
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
 
-    <a href="patient_appointment.html">Book Appointment</a>
+    <button class="btn btn-primary" onclick="alert('Appointment coming soon')">Book Appointment</button>
     <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
 
     <a href="logout.php">
