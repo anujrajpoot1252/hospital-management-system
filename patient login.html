@@ -17,7 +17,7 @@ function checkCaptcha(){
     var user = document.getElementById("userCaptcha").value;
 
     if(real != user){
-        alert("Wrong Captcha ");
+        alert("Wrong Captcha ❌");
         return false;
     }
     return true;
@@ -27,15 +27,17 @@ function checkCaptcha(){
 </head>
 
 <body onload="generateCaptcha()">
-
-<header>Hospital Management System</header>
+<div class="header">
+<h1>Hospital Management System</h1>
 <br>
 <a href="index.html">HOME</a>
+</div>
 
 <div class="login-box">
     <h2>Patient Login</h2>
 
-    <form action="patient_login.php" method="post" onsubmit="return checkCaptcha()">
+    <form action="patient login.php" method="post" onsubmit="return checkCaptcha()">
+   
 
     <input type="email" name="email" placeholder="Enter Email" required><br><br>
 
@@ -52,11 +54,10 @@ function checkCaptcha(){
     <button type="submit">Login</button>
 
 </form>
-    <br><br>
-<a href=" forget password.html " style="color: red; font-weight: bold; text-decoration: underline;font-size: 16px;">Forget Password?
-    
-</a>
+
+<a href="forget password.html ">Forget Password?</a>
+
 </div>
 
-</body>
+</body>>
 </html>
