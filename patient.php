@@ -1,4 +1,5 @@
 <?php
+
 // Database se connect karo
 $conn = mysqli_connect("localhost", "root", "", "patient_db");
 
@@ -21,7 +22,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm  = $_POST['confirm_password'];
     $gender   = $_POST['gender'];
 
-    // Pehle check karo ki dono password same hain ya nahi
+    // Default values (IMPORTANT)
+    $folder = "/uploads/"; // Agar photo upload nahi hota to default image set kar do
+   
+
+   if (isset($_FILES['photo'])) {
+
+    $filename = $_FILES['photo']['name'];
+    $tempname = $_FILES['photo']['tmp_name'];
+    $folder = "uploads/" . $filename;
+
+    if (move_uploaded_file($tempname, $folder)) {
+        echo "File uploaded successfully";
+    } else {
+        echo "Upload failed";
+    }
+
+} else {
+    echo "File not received";
+}
+
+
+
+   // Pehle check karo ki dono password same hain ya nahi
     if ($password != $confirm) {
         echo "<script>alert('Passwords match nahi kar rahe hain!');</script>";
         exit();
@@ -32,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Data database mein safe tarike se insert karo
     $stmt = $conn->prepare("INSERT INTO patient 
-        (Name, Email, Age, Phone, Weight, Blood_group, disease, medical_history, gender, password) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        (Name, Email, Age, Phone, Weight, Blood_group, disease, medical_history, gender, password, photo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("ssisssssss", $name, $email, $age, $phone, $weight, $bgroup, $disease, $history, $gender, $hashed_password);
+    $stmt->bind_param( "ssississsss", $name, $email, $age, $phone, $weight, $bgroup, $disease, $history, $gender, $hashed_password, $folder);
 
     if ($stmt->execute()) {
         echo "<script>
