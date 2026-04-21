@@ -82,29 +82,38 @@ a{
 }
 /*CSS for doctor login*/
 body{
-font-family: Arial;
-background:#f5f4f4;
-color:white;
-text-align:center;
+
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-header h2{
-    color:rgb(59, 141, 248);
-}
-header a{
-    color:#33cc33;
-    text-decoration:none;
-    margin-left:20px;
+
+
+.header{
+    background-color:rgb(59, 141, 248);
+    text-align: center;
+     h2{
+        color:rgb(238, 234, 234);
+        font-size: 30px;
+        padding: 20px;
+    }
+    a{
+        color:red;
+        text-decoration:none;
+        text-align: center;
+    }
 }
 
 .main{
 display:flex;
 justify-content:center;
 align-items:center;
-height:80vh;
+height:100vh;
 }
 
 .form-box{
-background:rgb(4, 18, 19);
+background:rgb(1, 240, 248);
 padding:40px;
 border-radius:10px;
 width:300px;
