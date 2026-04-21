@@ -34,61 +34,25 @@ $age = htmlspecialchars($row['Age'] ?? '');
 $gender = htmlspecialchars($row['gender'] ?? '');
 $phone = htmlspecialchars($row['Phone'] ?? '');
 $weight = htmlspecialchars($row['Weight'] ?? '');
-$blood_group = htmlspecialchars($row['Blood_Group'] ?? '');
+$blood_group = htmlspecialchars($row['Blood_group'] ?? '');
 $disease = htmlspecialchars($row['disease'] ?? '');
-$history = htmlspecialchars($row['medical_History'] ?? '');
+$history = htmlspecialchars($row['medical_history'] ?? '');
+$photo = htmlspecialchars($row['photo'] ?? '');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Patient Dashboard</title>
-    <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f2f2;
-        }
-
-        header {
-            background-color: #0097a7;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .dashboard-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #75f7f0;
-            border-radius: 8px;
-        }
-
-        .btn {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: red;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">  
 </head>
 
 <body>
 
-<header>
+<div class="header">
     <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
-</header>
+</div>
+
 
 <div class="dashboard-container">
     <h2>Welcome <?php echo $name; ?></h2>
@@ -101,12 +65,19 @@ $history = htmlspecialchars($row['medical_History'] ?? '');
     <p>Blood Group: <b><?php echo $blood_group; ?></b></p>
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
+    <?php if ($photo): ?>
+    <img src="<?php echo $photo; ?>" width="120" height="120">
+    <?php else: ?>
+    <img src="uploads/" width="120" height="120">
+     <?php endif; ?>
+   
 
-    <button class="btn btn-primary" onclick="alert('Appointment coming soon')">Book Appointment</button>
+
+    <a href="patient_appointment.html">Book Appointment</a>
     <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
 
     <a href="logout.php">
-        <button class="btn btn-danger">Logout</button>
+        <button class="btn-danger">Logout</button>
     </a>
 </div>
 
