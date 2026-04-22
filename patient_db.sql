@@ -1,16 +1,16 @@
-CREATE TABLE IF NOT EXISTS patient (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Age INT NOT NULL,
-    Phone VARCHAR(10) NOT NULL,
-    Weight VARCHAR(5) NOT NULL,
-    Blood_group VARCHAR(4) NOT NULL,
-    disease TEXT NOT NULL,
-    medical_history TEXT NOT NULL,
-    gender VARCHAR(10) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    reset_token VARCHAR(255) NULL,
-    reset_expiry DATETIME NULL
-);
+CREATE TABLE `patient` (
+  `Name` text NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Age` int(3) NOT NULL,
+  `Phone` varchar(10) NOT NULL,
+  `Weight` varchar(5) NOT NULL,
+  `Blood_group` varchar(4) NOT NULL,
+  `disease` text NOT NULL,
+  `medical_history` text NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `gender` text NOT NULL,
+  `created_at` varchar(50) NOT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_expiry` datetime DEFAULT NULL,
+  `photo` varchar(500) NOT NULL
+)
