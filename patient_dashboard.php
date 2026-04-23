@@ -34,6 +34,7 @@ $age = htmlspecialchars($row['Age'] ?? '');
 $gender = htmlspecialchars($row['gender'] ?? '');
 $phone = htmlspecialchars($row['Phone'] ?? '');
 $weight = htmlspecialchars($row['Weight'] ?? '');
+$height = htmlspecialchars($row['height'] ?? '');
 $blood_group = htmlspecialchars($row['Blood_group'] ?? '');
 $disease = htmlspecialchars($row['disease'] ?? '');
 $history = htmlspecialchars($row['medical_history'] ?? '');
@@ -70,6 +71,7 @@ $photo = htmlspecialchars($row['photo'] ?? '');
     <p>Gender: <b><?php echo $gender; ?></b></p>
     <p>Phone: <b><?php echo $phone; ?></b></p>
     <p>Weight: <b><?php echo $weight; ?></b></p>
+    <p>Height: <b><?php echo $height; ?></b></p>
     <p>Blood Group: <b><?php echo $blood_group; ?></b></p>
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
