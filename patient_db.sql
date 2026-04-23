@@ -4,7 +4,7 @@ CREATE TABLE `patient` (
   `Age` int(3) NOT NULL,
   `Phone` varchar(10) NOT NULL,
   `Weight` varchar(5) NOT NULL,
-  .Height` DECIMAL(10) NOT NULL,
+  .height` DECIMAL(10) NOT NULL,
   `Blood_group` varchar(4) NOT NULL,
   `disease` text NOT NULL,
   `medical_history` text NOT NULL,
