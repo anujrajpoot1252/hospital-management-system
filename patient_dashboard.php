@@ -52,10 +52,18 @@ $photo = htmlspecialchars($row['photo'] ?? '');
 <div class="header">
     <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
 </div>
+<div class="dashboard-container" style="position: relative; padding: 20px;">
 
-
-<div class="dashboard-container">
     <h2>Welcome <?php echo $name; ?></h2>
+
+    <!-- Profile Photo Top Right -->
+    <?php if ($photo): ?>
+        <img src="<?php echo $photo; ?>" 
+             style="position:absolute; top:50px; right:20px; width:90px; height:100px;  object-fit:cover;">
+    <?php else: ?>
+        <img src="uploads"
+             style="position:absolute; top:50px; right:20px; width:90px; height:100px; object-fit:cover;">
+    <?php endif; ?>
 
     <p>Email: <b><?php echo $email; ?></b></p>
     <p>Age: <b><?php echo $age; ?></b></p>
@@ -65,13 +73,6 @@ $photo = htmlspecialchars($row['photo'] ?? '');
     <p>Blood Group: <b><?php echo $blood_group; ?></b></p>
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
-    <?php if ($photo): ?>
-    <img src="<?php echo $photo; ?>" width="120" height="120">
-    <?php else: ?>
-    <img src="uploads/" width="120" height="120">
-     <?php endif; ?>
-   
-
 
     <a href="patient_appointment.html">Book Appointment</a>
     <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
@@ -80,7 +81,6 @@ $photo = htmlspecialchars($row['photo'] ?? '');
         <button class="btn-danger">Logout</button>
     </a>
 </div>
-
 </body>
 </html>
 
