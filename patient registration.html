@@ -45,8 +45,12 @@
 
 <input type="text" name="disease" placeholder="Disease" required><br>
 <input type="text" name="history" placeholder="History" required><br>
-
-<input type="password" id="password" name="password" placeholder="Create Password" required><br>
+    
+<input type="password" name="password" placeholder="create password"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
+    title="Password must contain uppercase, lowercase, number, special character and 8+ characters"
+    required>
+    <br>
 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
 
 <div class="gender">
