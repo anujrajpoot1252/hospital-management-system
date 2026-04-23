@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age      = $_POST['age'];
     $phone    = $_POST['phone'];
     $weight   = $_POST['weight'];
+    $height   = $_POST['height'];
     $bgroup   = $_POST['bgroup'];
     $disease  = $_POST['disease'];
     $history  = $_POST['history'];
@@ -59,10 +60,10 @@ if (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}/", $pas
 
     // Data database mein safe tarike se insert karo
     $stmt = $conn->prepare("INSERT INTO patient 
-        (Name, Email, Age, Phone, Weight, Blood_group, disease, medical_history, gender, password, photo) 
+        (Name, Email, Age, Phone, Weight,height, Blood_group, disease, medical_history, gender, password, photo) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param( "ssississsss", $name, $email, $age, $phone, $weight, $bgroup, $disease, $history, $gender, $hashed_password, $folder);
+    $stmt->bind_param( "ssississssss", $name, $email, $age, $phone, $weight,$height, $bgroup, $disease, $history, $gender, $hashed_password, $folder);
 
     if ($stmt->execute()) {
         echo "<script>
