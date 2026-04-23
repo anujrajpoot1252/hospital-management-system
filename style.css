@@ -250,6 +250,7 @@ body{
     padding:20px;
     border-radius:10px;
     text-align: center;
+    
 }
 
 .form input, .form select{
@@ -280,6 +281,7 @@ body{
     color:black;
     font-size: 20px;
 }
+
 /* CSS for reset password page */
 
 body {
