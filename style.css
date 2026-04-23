@@ -281,14 +281,7 @@ body{
     color:black;
     font-size: 20px;
 }
-.radio {
-  margin-right: 20px;
-  font-size: 16px;
-}
 
-.radio input {
-  margin-right: 5px; /* yahi gap control karega */
-}
 /* CSS for reset password page */
 
 body {
