@@ -42,7 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "File not received";
 }
 
-
+// Strong password validation (REQUIRED)
+if (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}/", $password)) {
+    echo "Password must contain uppercase, lowercase, number and special character!";
+    exit();
+}
 
    // Pehle check karo ki dono password same hain ya nahi
     if ($password != $confirm) {
