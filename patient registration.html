@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Patient Registration</title>
-<style>body{
+<style>
+    body{
     margin:0;
     font-family: Arial;
     background:#f7f5f5;
@@ -110,27 +111,27 @@ a{
 
 <form action="patient.php" method="POST" class="form" enctype="multipart/form-data" onsubmit="return checkPassword()">
 
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
+<input type="text" name="name" placeholder="Name" required><br>
+<input type="email" name="email" placeholder="Email" required><br>
 <input type="number" name="age" placeholder="Age" min="1" max="100" required><br>
-<input type="text" placeholder="Phone" required>
-<input type="text" placeholder="Weight" required>
-<input type="text" placeholder="Height" required>
+<input type="text" name="phone" placeholder="Phone" required><br>
+<input type="text" name="weight" placeholder="Weight" required><br>
+<input type="number" id="height" placeholder="height (cm)" step="0.1" min="0" required><br>
 
-<select required>
-<option value="">Select Blood Group</option>
-<option value="A+">A+</option>
-<option value="A-">A-</option>
-<option value="B+">B+</option>
-<option value="B-">B-</option>
-<option value="AB+">AB+</option>
-<option value="AB-">AB-</option>
-<option value="O+">O+</option>
-<option value="O-">O-</option>
-</select>
+<select name="bgroup" required>
+    <option value="">Select Blood_group</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+</select><br>
 
-<input type="text" placeholder="Disease" required>
-<input type="text" placeholder="History" required>
+<input type="text" name="disease" placeholder="Disease" required><br>
+<input type="text" name="history" placeholder="History" required><br>
 
 <input type="password" name="password" placeholder="create password"
     pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
@@ -141,21 +142,25 @@ a{
 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
 
 <div class="gender">
-<label><input type="radio" name="gender"> Male</label>
-<label><input type="radio" name="gender"> Female</label>
-</div>
+<input type="radio" name="gender" value="Male" required> Male
 
-<input type="file" required>
+<input type="radio" name="gender" value="Female" required> Female
+
+</div>
+<input type="file" name="photo" placeholder="photo" required><br>
+    
+
 
 <button type="submit" class="registerbtn">Register</button>
 <br><br>
-<p style="color: rgb(23, 23, 24); font-weight: bold; ">Already have an account?</p>  
-<a href="patient login.html"  style="color: rgb(32, 94, 228);  text-decoration: underline; font-weight: bold; "> Login here</a>
+<p style="color: rgb(23, 23, 24); font-weight: bold; ">Already have an account?</p>    
+<a href="patient_login.html"  style="color: rgb(32, 94, 228);  text-decoration: underline; font-weight: bold; "> Login here</a>
 
 </form>
 
 </div>
 </div>
+
 <script>
 // Yeh function password check karta hai
 function checkPassword() {
