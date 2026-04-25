@@ -45,7 +45,93 @@ $photo = htmlspecialchars($row['photo'] ?? '');
 <html>
 <head>
     <title>Patient Dashboard</title>
-    <link rel="stylesheet" href="style.css">  
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d3d3d3;
+}
+
+/* Header */
+header {
+    background-color: #3b82f6;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    width: 350px;
+    margin: 50px auto;   /* center horizontally */
+    background-color: #66d1c7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Welcome Title */
+.dashboard-container h2 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+/* Text Styling */
+.dashboard-container p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Image */
+.dashboard-container img {
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+/* Links & Buttons */
+.dashboard-container a {
+    text-decoration: none;
+}
+
+/* Book Appointment Link */
+.dashboard-container a:first-of-type {
+    color: red;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* View Reports Button */
+.btn-primary {
+    background-color: #1d4ed8;
+    color: white;
+}
+
+/* Logout Button */
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+    </style>
 </head>
 
 <body>
