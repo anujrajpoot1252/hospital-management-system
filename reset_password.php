@@ -57,8 +57,43 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <html>
 <head>
 <title>Reset Password</title>
+    <style>
+        body {
+    margin: 0;
+    font-family: Arial;
+}
+
+.container {
+    width: 300px;
+    margin: 100px auto;
+    background: #20c9c9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    background: black;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+    </style>
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
 <div class="container">
 
