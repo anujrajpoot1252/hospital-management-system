@@ -2,7 +2,64 @@
 <html>
 <head>
 <title>Patient Login</title>
-<link rel="stylesheet" href="style.css">
+<style>
+    .header{
+    font-size:15px;
+    margin-top:20px;
+    color:white;
+    background-color: #007bff;
+}
+
+a{
+    color:#cc3333;
+    text-decoration:none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-box{
+    width:320px;
+    margin:80px auto;
+    background:rgb(15, 240, 240);
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px #000;
+    text-align: center;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    background:black;
+    border:none;
+    padding:10px 20px;
+    color:white;
+    font-size:18px;
+    border-radius:5px;
+    cursor:pointer;
+}
+h3{
+    color:white;
+    text-align: center;
+}
+
+button:hover{
+    background:rgb(76, 83, 83);
+}
+
+#showCaptcha{
+    letter-spacing:5px;
+    color:white;
+    text-align: center;
+}
+    
+</style>
 <script>
 // 4 digit captcha generate
 function generateCaptcha(){
