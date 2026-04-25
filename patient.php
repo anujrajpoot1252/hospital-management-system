@@ -1,13 +1,13 @@
 <?php
 
-// Database se connect karo
+// Database connection
 $conn = mysqli_connect("localhost", "root", "", "patient_db");
 
 if (!$conn) {
-    die("Connection failed");
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// Jab patient form bhar ke submit kare tab ye code chalega
+// Form submit check
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name     = $_POST['name'];
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age      = $_POST['age'];
     $phone    = $_POST['phone'];
     $weight   = $_POST['weight'];
-    $height   = $_POST['height'];
+    $height   = $_POST['height']; // cm me number (e.g. 170.5)
     $bgroup   = $_POST['bgroup'];
     $disease  = $_POST['disease'];
     $history  = $_POST['history'];
@@ -23,55 +23,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm  = $_POST['confirm_password'];
     $gender   = $_POST['gender'];
 
-    // Default values (IMPORTANT)
-    $folder = "/uploads/"; // Agar photo upload nahi hota to default image set kar do
-   
+    // Default photo
+    $folder = "uploads/default.png";
 
-   if (isset($_FILES['photo'])) {
+    // File upload
+    if (!empty($_FILES['photo']['name'])) {
 
-    $filename = $_FILES['photo']['name'];
-    $tempname = $_FILES['photo']['tmp_name'];
-    $folder = "uploads/" . $filename;
+        $filename = $_FILES['photo']['name'];
+        $tempname = $_FILES['photo']['tmp_name'];
+        $folder = "uploads/" . $filename;
 
-    if (move_uploaded_file($tempname, $folder)) {
-        echo "File uploaded successfully";
-    } else {
-        echo "Upload failed";
+        move_uploaded_file($tempname, $folder);
     }
 
-} else {
-    echo "File not received";
-}
+    // Password validation
+    if (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}/", $password)) {
+        echo "Password must contain uppercase, lowercase, number and special character!";
+        exit();
+    }
 
-// Strong password validation (REQUIRED)
-if (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}/", $password)) {
-    echo "Password must contain uppercase, lowercase, number and special character!";
-    exit();
-}
-
-   // Pehle check karo ki dono password same hain ya nahi
+    // Password match check
     if ($password != $confirm) {
         echo "<script>alert('Passwords match nahi kar rahe hain!');</script>";
         exit();
     }
 
-    // Password ko safe banao (hash karo)
+    // Hash password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Data database mein safe tarike se insert karo
+    // Prepare query (FIXED)
     $stmt = $conn->prepare("INSERT INTO patient 
-        (Name, Email, Age, Phone, Weight,height, Blood_group, disease, medical_history, gender, password, photo) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    (Name, Email, Age, Phone, Weight, height, Blood_group, disease, medical_history, gender, password, photo) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param( "ssississssss", $name, $email, $age, $phone, $weight,$height, $bgroup, $disease, $history, $gender, $hashed_password, $folder);
+    // Bind types
+    $stmt->bind_param("ssissdssssss",
+        $name,
+        $email,
+        $age,
+        $phone,
+        $weight,
+        $height,   // decimal number  (cm)
+        $bgroup,
+        $disease,
+        $history,
+        $gender,
+        $hashed_password,
+        $folder
+    );
 
+    // Execute
     if ($stmt->execute()) {
         echo "<script>
-                alert('Registration successful! Ab login kar sakte ho.');
-                window.location.href = 'patient login.html';
+                alert('Registration successful!');
+                window.location.href = 'patient_login.html';
               </script>";
     } else {
-        echo "<script>alert('Registration mein error aa gaya. Dobara try karo.');</script>";
+        echo "Error: " . $stmt->error;
     }
 
     $stmt->close();
