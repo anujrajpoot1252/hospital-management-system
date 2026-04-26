@@ -97,6 +97,8 @@ if (!isset($_SESSION['admin'])) {
         transition: 0.2s;
     }
 </style>
+    <a href="admin_dashboard.php" style="display: block; text-align: center; margin-top: 20px; color: #3498db; text-decoration: none;"> Back to Admin</a>
+
     <body>
     <h1 style="text-align: center;">Patients List</h1>
     <table border="1" style="width: 80%; margin: auto; text-align: center;">
