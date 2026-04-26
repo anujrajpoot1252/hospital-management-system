@@ -3,62 +3,89 @@
 <head>
 <title>Patient Login</title>
 <style>
-    .header{
-    font-size:15px;
-    margin-top:20px;
+    body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#e0e0e0;
+}
+
+/* HEADER */
+.header{
+    background:#1976d2;
     color:white;
-    background-color: #007bff;
+    text-align:center;
+    padding:15px 0;
 }
 
-a{
-    color:#cc3333;
+.header h1{
+    margin:0;
+}
+
+.header a{
+    color:red;
+    font-weight:bold;
     text-decoration:none;
-    font-weight: bold;
-    text-align: center;
 }
 
+/* LOGIN BOX */
 .login-box{
-    width:320px;
+    width:350px;
     margin:80px auto;
-    background:rgb(15, 240, 240);
+    background:#20c9c9;
     padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 15px #000;
-    text-align: center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    text-align:center;
 }
 
+/* INPUTS */
 input{
     width:90%;
-    padding:10px;
-    margin:10px;
+    padding:12px;
+    margin:10px 0;
     border:none;
-    border-radius:5px;
+    border-radius:6px;
+    background:#f1f1f1;
 }
 
+/* BUTTON */
 button{
-    background:black;
+    width:100%;
+    padding:12px;
+    background:#2f6edb;
     border:none;
-    padding:10px 20px;
     color:white;
-    font-size:18px;
-    border-radius:5px;
+    font-size:16px;
+    border-radius:6px;
     cursor:pointer;
-}
-h3{
-    color:white;
-    text-align: center;
 }
 
 button:hover{
-    background:rgb(76, 83, 83);
+    background:#1e4fa8;
+}
+
+/* TEXT */
+h2{
+    color:#1e3a8a;
+}
+
+h3{
+    color:white;
 }
 
 #showCaptcha{
+    font-size:28px;
     letter-spacing:5px;
     color:white;
-    text-align: center;
+    margin:10px 0;
 }
-    
+
+/* FORGET PASSWORD */
+.login-box a{
+    display:block;
+    margin-top:10px;
+    color:red;
+}
 </style>
 <script>
 // 4 digit captcha generate
