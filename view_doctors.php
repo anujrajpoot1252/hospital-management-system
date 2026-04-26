@@ -114,6 +114,7 @@ $result = $stmt->get_result();
     }
 </style>
 </head>
+<a href="admin_dashboard.php" style="display: block; text-align: center; margin-top: 20px; color: #3498db; text-decoration: none;"> Back to Admin</a>
 
 <body>
 
