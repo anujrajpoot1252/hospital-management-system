@@ -16,51 +16,75 @@ if (!isset($_SESSION['admin'])) {
     
     <title>Admin Dashboard</title>
     <style>
-        body { font-family: Arial; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background: #007bff; color: white; }
-        .logout { float: right; padding: 10px 15px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px; }
+   body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .add { background: green; }
+        .view { background: green; }
+        .logout { background: red; }
+
+
+        .box {
+            background: white;
+            padding: 15px;
+            margin-top: 20px;
+            width: 300px;
+            border-radius: 5px;
+        }
+
+        select, button {
+            padding: 6px;
+            margin-top: 10px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome Admin - Doctors Dashboard</h1>
-    <a href="admin_logout.php" class="logout">Logout</a>
+    <h1 style="text-align: center;">Welcome Admin</h1>
+    <div class="top-bar">
+        <a href="add_doctor.php" class="btn add">Add Doctor</a>
+        <a href="view_doctors.php" class="btn view">View Doctors</a>
+        <a href="view_patients.php" class="btn view">View Patients</a>
+        <a href="logout.php" class="btn logout">Logout</a>
+    </div>
 
-    <h2>Doctors List</h2>
-    <table>
-        <tr>
-           <th>ID</th>
-           <th>Password</th>
-            <th>Name</th>
-            <th>Specialization</th>
-            <th>Experience (Years)</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Availability</th>
-        </tr>
+  
+    <select name="doctor_id">
+        <option value="">-- Select Doctor --</option>
+   
         <?php
         $conn = mysqli_connect("localhost", "root", "", "Admin");
         $sql = "SELECT * FROM doctor";
         $result = mysqli_query($conn, $sql);
 
+       
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['ID'] . "</td>";
-                echo "<td>" . $row['Password'] . "</td>";
-                echo "<td>" . $row['Name'] . "</td>";
-                echo "<td>" . $row['Department'] . "</td>";
-                echo "<td>" . $row['Experience'] . "</td>";
-                echo "<td>" . $row['Phone'] . "</td>";
-                echo "<td>" . $row['Email'] . "</td>";
-                echo "<td>" . $row['Availability'] . "</td>";
-                echo "</tr>";
+                echo "<option value='".$row['ID']."'>";
+                echo $row['ID']." - ".$row['Name']." (".$row['Department'].")";
+                echo "</option>";
             }
         } else {
-            echo "<tr><td colspan='7'>No doctors found in database.</td></tr>";
+            echo "<option>No doctors found</option>";
         }
         ?>
-    </table>
+    </select>
 </body>
 </html>
