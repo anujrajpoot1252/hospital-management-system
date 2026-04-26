@@ -57,9 +57,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <html>
 <head>
 <title>Reset Password</title>
-
-</head>
-    <style>
+ <style>
         body {
     margin: 0;
     font-family: Arial;
@@ -94,6 +92,8 @@ button {
     border-radius: 5px;
 }
     </style>
+</head>
+   
 <body>
 <div class="container">
 
