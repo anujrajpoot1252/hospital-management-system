@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Login</title>
+<link rel="stylesheet" href="style.css">
+<script>
+// 4 digit captcha generate
+function generateCaptcha(){
+    var captcha = Math.floor(1000 + Math.random()*9000);
+    document.getElementById("showCaptcha").innerHTML = captcha;
+    document.getElementById("realCaptcha").value = captcha;
+}
+
+// check captcha
+function checkCaptcha(){
+    var real = document.getElementById("realCaptcha").value;
+    var user = document.getElementById("userCaptcha").value;
+
+    if(real != user){
+        alert("Wrong Captcha ");
+        return false;
+    }
+    return true;
+}
+</script>
+
+</head>
+
+<body onload="generateCaptcha()">
+
+<header>Hospital Management System</header>
+<br>
+<a href="index.html">HOME</a>
+
+<div class="login-box">
+    <h2>Patient Login</h2>
+
+    <form action="patient_login.php" method="post" onsubmit="return checkCaptcha()">
+
+    <input type="email" name="email" placeholder="Enter Email" required><br><br>
+
+    <input type="password" name="password" placeholder="Enter Password" required><br><br>
+
+    <h3>Enter captcha</h3>
+    <h1 id="showCaptcha"></h1>
+
+    <input type="text" name="userCaptcha" id="userCaptcha" placeholder="Enter captcha" required>
+    
+    <input type="hidden" name="realCaptcha" id="realCaptcha">
+
+    <br><br>
+    <button type="submit">Login</button>
+
+</form>
+    <br><br>
+<a href=" forget_password.html " style="color: red; font-weight: bold; text-decoration: underline;font-size: 16px;">Forget Password?
+    
+</a>
+</div>
+
+</body>
+</html>

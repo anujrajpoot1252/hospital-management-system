@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Registration</title>
+<style>
+    body{
+    margin:0;
+    font-family: Arial;
+    background:#f7f5f5;
+}
+
+.header{
+    background:rgb(59, 141, 248);
+    padding:10px;
+    text-align:center;
+}
+.header h2{
+    color:white;
+}
+a{
+    color:red;
+    text-decoration:none;
+    font-size:18px;
+    font-weight: bold;
+}
+.main{
+    display:flex;
+    min-height:100vh;
+}
+
+.left{
+    width:30%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    color:black;
+}
+
+.right{
+    width:70%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.form{
+    background:#22dce9;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+    width:400px;
+}
+
+.form input,
+.form select{
+    padding:12px;
+    width:90%;
+    margin:8px 0;
+    border:none;
+    border-radius:5px;
+}
+
+.gender{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin:15px 0;
+}
+
+.gender label{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.gender input[type="radio"]{
+    width:auto;
+}
+
+.registerbtn{
+    background:#33cc33;
+    padding:12px;
+    border:none;
+    width:95%;
+    font-size:18px;
+    cursor:pointer;
+    border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h2>HOSPITAL MANAGEMENT SYSTEM</h2>
+<a href="index.html">HOME</a>
+</div>
+
+<div class="main">
+
+<div class="left">
+<h2>Patient Portal</h2>
+</div>
+
+<div class="right">
+
+<h2>Patient Registration</h2>
+
+<form action="patient.php" method="POST" class="form" enctype="multipart/form-data" onsubmit="return checkPassword()">
+
+<input type="text" name="name" placeholder="Name" required><br>
+<input type="email" name="email" placeholder="Email" required><br>
+<input type="number" name="age" placeholder="Age" min="1" max="100" required><br>
+<input type="text" name="phone" placeholder="Phone" required><br>
+<input type="text" name="weight" placeholder="Weight" required><br>
+<input type="text" name="height" placeholder="Height (cm)"><br>
+
+<select name="bgroup" required>
+    <option value="">Select Blood_group</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+</select><br>
+
+<input type="text" name="disease" placeholder="Disease" required><br>
+<input type="text" name="history" placeholder="History" required><br>
+
+<input type="password" name="password" placeholder="create password"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
+    title="Password must contain uppercase, lowercase, number, special character and 8+ characters"
+    required>
+
+<br>
+<input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
+
+<div class="gender">
+<input type="radio" name="gender" value="Male" required> Male
+
+<input type="radio" name="gender" value="Female" required> Female
+
+</div>
+<input type="file" name="photo" placeholder="photo" required><br>
+    
+
+
+<button type="submit" class="registerbtn">Register</button>
+<br><br>
+<p style="color: rgb(23, 23, 24); font-weight: bold; ">Already have an account?</p>    
+<a href="patient_login.html"  style="color: rgb(32, 94, 228);  text-decoration: underline; font-weight: bold; "> Login here</a>
+
+</form>
+
+</div>
+</div>
+
+<script>
+// Yeh function password check karta hai
+function checkPassword() {
+    var pass = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm_password").value;
+    
+    if (pass !== confirm) {
+        alert("Passwords match nahi kar rahe hain!");
+        return false;   // Form submit nahi hoga
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>
