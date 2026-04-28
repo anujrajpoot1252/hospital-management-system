@@ -36,7 +36,7 @@ if (!isset($_SESSION['admin'])) {
             font-size: 14px;
         }
 
-        .add { background: green; }
+       
         .view { background: green; }
         .logout { background: red; }
 
@@ -61,7 +61,7 @@ if (!isset($_SESSION['admin'])) {
     <div class="top-bar">
         <a href="pending_doctor.php" class="btn view">View Pending Doctors</a>
         <a href="approved_doctor.php" class="btn view">View Approved Doctors</a>
-        <a href="add_doctor.html" class="btn add">Add Doctor</a>
+       
         <a href="view_doctors.php" class="btn view">View Doctors</a>
         <a href="view_patients.php" class="btn view">View Patients</a>
         <a href="logout.php" class="btn logout">Logout</a>
