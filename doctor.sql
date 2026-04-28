@@ -1,11 +1,11 @@
-CREATE TABLE doctor (
-  ID VARCHAR(50) PRIMARY KEY,
-  Name VARCHAR(100),
-  Password VARCHAR(255),
-  Department VARCHAR(100),
-  Experience VARCHAR(50),
-  Availability VARCHAR(50),
-  Email VARCHAR(100),
-  Phone VARCHAR(20)
+CREATE TABLE `doctor` (
+  `ID` varchar(50) NOT NULL,
+  `Password` varchar(50) NOT NULL,
+  `Name` text NOT NULL,
+  `Department` text NOT NULL,
+  `Experience` varchar(50) NOT NULL,
+  `Availability` varchar(50) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Phone` int(10) NOT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending'
-);
+)
