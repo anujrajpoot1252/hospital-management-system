@@ -74,10 +74,10 @@ body {
 <div class="cards">
 
     <div class="card">
-        <img src="https://img.freepik.com/premium-vector/doctor-icon-flat-vector-illustration_757387-939.jpg">
-        <h3>Add Doctor</h3>
-        <p>Add new doctor</p>
-        <a href="add_doctor.php" class="btn blue">Add</a>
+         <img src="https://img.freepik.com/premium-vector/doctor-icon-flat-vector-illustration_757387-939.jpg">
+        <h3>Pending Requests</h3>
+        <p>View and manage pending requests</p>
+        <a href="pending_doctor.php" class="btn blue">View</a>
     </div>
 
     <div class="card">
