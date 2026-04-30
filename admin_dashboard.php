@@ -13,61 +13,95 @@ if (!isset($_SESSION['admin'])) {
 <!DOCTYPE html>
 <html>
 <head>
+<title>Admin Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f9;
+    text-align: center;
+}
+
+.header {
+    padding: 20px;
+}
     
-    <title>Admin Dashboard</title>
-    <style>
-   body {
-            font-family: Arial;
-            background: #f5f5f5;
-            margin: 20px;
-        }
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.card {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
 
-        .btn {
-            padding: 6px 12px;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+.card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
 
-       
-        .view { background: green; }
-        .logout { background: red; }
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
 
+.blue { background: #007bff; }
+.green { background: #28a745; }
+.purple { background: #6f42c1; }
+.red { background: #dc3545; }
 
-        .box {
-            background: white;
-            padding: 15px;
-            margin-top: 20px;
-            width: 300px;
-            border-radius: 5px;
-        }
-
-        select, button {
-            padding: 6px;
-            margin-top: 10px;
-            width: 100%;
-        }
-    </style>
+</style>
 </head>
+
 <body>
-    <h1 style="text-align: center;">Welcome Admin</h1>
-    <div class="top-bar">
-        <a href="pending_doctor.php" class="btn view">View Pending Doctors</a>
-        <a href="approved_doctor.php" class="btn view">View Approved Doctors</a>
-       
-        <a href="view_doctors.php" class="btn view">View Doctors</a>
-        <a href="view_patients.php" class="btn view">View Patients</a>
-        <a href="logout.php" class="btn logout">Logout</a>
+
+<div class="header">
+    <h1>Welcome Admin 👋</h1>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <img src="https://img.freepik.com/premium-vector/doctor-icon-flat-vector-illustration_757387-939.jpg">
+        <h3>Add Doctor</h3>
+        <p>Add new doctor</p>
+        <a href="add_doctor.php" class="btn blue">Add</a>
     </div>
 
-  
-   
+    <div class="card">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.guvL8EaGRtvnNA3ggmc3DwAAAA?r=0&pid=ImgDet&w=206&h=206&c=7&o=7&rm=3">
+        <h3>View Doctors</h3>
+        <p>Manage doctors</p>
+        <a href="view_doctors.php" class="btn green">View</a>
+    </div>
+
+    <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.p0aB6pKFgdcKoB1Q0Bp6IwHaHa?w=184&h=184&c=7&r=0&o=7&pid=1.7&rm=3">
+        <h3>View Patients</h3>
+        <p>Manage patients</p>
+        <a href="view_patients.php" class="btn purple">View</a>
+    </div>
+
+    <div class="card">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.4UtNis_xGjmhFNrIBUxeZwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3">
+        <h3>Logout</h3>
+        <p>Exit system</p>
+        <a href="logout.php" class="btn red">Logout</a>
+    </div>
+
+</div>
+
 </body>
 </html>
