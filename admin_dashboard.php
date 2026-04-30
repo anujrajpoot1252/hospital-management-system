@@ -82,9 +82,9 @@ body {
 
     <div class="card">
         <img src="https://tse2.mm.bing.net/th/id/OIP.guvL8EaGRtvnNA3ggmc3DwAAAA?r=0&pid=ImgDet&w=206&h=206&c=7&o=7&rm=3">
-        <h3>View Doctors</h3>
-        <p>Manage doctors</p>
-        <a href="view_doctors.php" class="btn green">View</a>
+        <h3>approve Doctors</h3>
+        <p>view verify and  approve doctor registation requests</p>
+        <a href="approve_doctors.php" class="btn green">View</a>
     </div>
 
     <div class="card">
