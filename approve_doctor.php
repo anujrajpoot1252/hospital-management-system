@@ -1,14 +1,38 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "admin");   
-$id = $_GET['id'];
-$sql = "UPDATE doctor SET Status='approved' WHERE ID='$id'";
+ob_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-if (mysqli_query($conn, $sql)) {
-    echo "<script>alert('Doctor approved successfully!')</script>";
-    header("Location: admin_dashboard.php");
+$conn = mysqli_connect("localhost", "root", "", "admin");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+    $id = $_GET['id'];
+
+    $stmt = $conn->prepare("UPDATE doctor SET Status='approved' WHERE ID=?");
+    $stmt->bind_param("s", $id);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        mysqli_close($conn);
+        ob_end_clean();
+        header("Location: pending_doctor.php?success=1");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "Invalid Doctor ID";
 }
 
 mysqli_close($conn);
+ob_end_flush();
 ?>
