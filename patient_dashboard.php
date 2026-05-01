@@ -76,7 +76,7 @@ $photo = htmlspecialchars($row['photo'] ?? '');
     <p>Disease: <b><?php echo $disease; ?></b></p>
     <p>Medical History: <b><?php echo $history; ?></b></p>
 
-    <a href="patient_appointment.html">Book Appointment</a>
+    <a href="patient_appointment.php">Book Appointment</a>
     <button class="btn btn-primary" onclick="alert('Reports coming soon')">View Reports</button>
 
     <a href="logout.php">
