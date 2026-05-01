@@ -1,28 +1,35 @@
 <?php
-ob_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
 
-$conn = mysqli_connect("localhost", "root", "", "admin");
+//  admin login check
+if (!isset($_SESSION['admin'])) {
+    header("Location: admin_login.php");
+    exit();
+}
 
+// DB connection
+$conn = mysqli_connect("localhost", "root", "", "admin");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+// Check ID
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     $id = $_GET['id'];
 
+    // Prepared statement
     $stmt = $conn->prepare("DELETE FROM doctor WHERE status='pending' AND ID=?");
     $stmt->bind_param("s", $id);
 
     if ($stmt->execute()) {
         $stmt->close();
         mysqli_close($conn);
-        ob_end_clean();
+
+        // Redirect after delete
         header("Location: pending_doctor.php?rejected=1");
         exit();
+
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -34,5 +41,4 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 mysqli_close($conn);
-ob_end_flush();
 ?>
