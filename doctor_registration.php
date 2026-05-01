@@ -1,37 +1,39 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "Admin");
 
-if(!$conn){
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
 if (isset($_POST['add'])) {
-    $id = $_POST['id'];
-    $password = $_POST['password'];
-    $name = $_POST['name'];
-    $dept = $_POST['dept'];
-    $exp = $_POST['exp'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $avail = $_POST['avail'];
+    $id        = trim($_POST['id']);
+    $password  = trim($_POST['password']);
+    $name      = trim($_POST['name']);
+    $dept      = trim($_POST['dept']);
+    $exp       = intval($_POST['exp']);
+    $phone     = trim($_POST['phone']);
+    $email     = trim($_POST['email']);
+    $avail     = $_POST['avail'];
+    $time_from = $_POST['time_from'];
+    $time_to   = $_POST['time_to'];
 
-
-
-
-
-
-    $stmt = $conn->prepare("INSERT INTO doctor (ID, Password, Name, Department, Experience, Phone, Email, Availability) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $id, $password, $name, $dept, $exp, $phone, $email, $avail);
+    $stmt = $conn->prepare(
+        "INSERT INTO doctor (ID, Password, Name, Department, Experience, Phone, Email, Availability, TimeFrom, TimeTo)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    );
+    $stmt->bind_param("ssssisssss", $id, $password, $name, $dept, $exp, $phone, $email, $avail, $time_from, $time_to);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Doctor added successfully!')<script>";
-        header("Location: doctor_login.html");
-       
+        $stmt->close();
+        mysqli_close($conn);
+        // Redirect BEFORE any output
+        echo "<script>alert('Doctor registered successfully!'); window.location.href='doctor_login.html';</script>";
+        exit();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "<script>alert('Error: " . addslashes($stmt->error) . "');</script>";
+        $stmt->close();
     }
-
-    $stmt->close();
 }
+
 mysqli_close($conn);
 ?>
