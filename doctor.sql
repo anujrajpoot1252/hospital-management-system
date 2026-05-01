@@ -8,4 +8,6 @@ CREATE TABLE `doctor` (
   `Email` varchar(30) NOT NULL,
   `Phone` int(10) NOT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending'
+  `TimeFrom` time DEFAULT NULL,
+  `TimeTo` time DEFAULT NULL
 )
