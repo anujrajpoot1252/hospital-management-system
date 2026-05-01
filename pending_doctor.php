@@ -15,7 +15,7 @@ if (isset($_GET['success'])) {
     echo "<p style='color:green; font-size:18px;'> Doctor Approved Successfully!</p>";
 }
 
-$sql = "SELECT * FROM doctor WHERE Status='pending'";
+$sql = "SELECT * FROM doctor WHERE status='pending'";
 $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ $result = mysqli_query($conn, $sql);
                    onclick="return confirm('Reject this doctor?')"> Reject </a>
             </td>
         </tr>
-        <?php } ?>
+        <?php } ?>  
     </table>
     <?php } else { ?>
         <p class="no-data">No pending doctors found.</p>
