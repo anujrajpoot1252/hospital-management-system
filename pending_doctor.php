@@ -49,6 +49,7 @@ $result = mysqli_query($conn, $sql);
                 <a href="approve_doctor.php?id=<?php echo $row['ID']; ?>" 
                    class="approve-btn"
                    onclick="return confirm('Approve this doctor?')"> Approve </a>
+                  &nbsp;
                 <a href="reject_doctor.php?id=<?php echo $row['ID']; ?>" 
                    class="reject-btn"
                    onclick="return confirm('Reject this doctor?')"> Reject </a>
@@ -57,7 +58,7 @@ $result = mysqli_query($conn, $sql);
         <?php } ?>
     </table>
     <?php } else { ?>
-        <p class="no-data">❌ No pending doctors found.</p>
+        <p class="no-data">No pending doctors found.</p>
     <?php } ?>
 </body>
 </html>
