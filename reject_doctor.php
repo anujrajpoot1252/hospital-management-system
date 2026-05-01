@@ -14,7 +14,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     $id = $_GET['id'];
 
-    $stmt = $conn->prepare("DELETE FROM doctor WHERE ID=?");
+    $stmt = $conn->prepare("DELETE FROM doctor WHERE status='pending' AND ID=?");
     $stmt->bind_param("s", $id);
 
     if ($stmt->execute()) {
