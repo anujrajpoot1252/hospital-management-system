@@ -1,110 +1,278 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> Doctor Registration</title>
+    <title>Doctor Registration - Hospital Management System</title>
 
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #0f1f3d;
+            --teal: #0e9e8e;
+            --teal-dark: #0b8070;
+            --light: #f0f4f8;
+            --white: #ffffff;
+            --gray: #6b7280;
+            --border: #d1d9e0;
+        }
+
         body {
-            font-family: Arial;
-            background-color: #f4f4f4;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .container {
-            width: 350px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px gray;
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        h2 {
-            text-align: center;
+        header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
         }
 
-        input, select {
+        header a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        header a:hover { color: #5eead4; }
+
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 44px 40px;
             width: 100%;
-            padding: 8px;
-            margin: 8px 0;
+            max-width: 480px;
+            box-shadow: 0 8px 40px rgba(15,31,61,0.12);
         }
 
-        .lang input {
-            width: auto;
-            margin-right: 5px;
+        .form-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .form-box p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="email"],
+        input[type="time"],
+        select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--navy);
+            background: #f8fafc;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            appearance: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(14,158,142,0.15);
+            background: var(--white);
         }
 
         .time-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .time-group input {
-            width: 100%;
+        .time-group .field {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .time-row {
+            margin-bottom: 16px;
+        }
+
+        .time-row label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 6px;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: green;
-            color: white;
+            padding: 13px;
+            background: var(--teal);
+            color: var(--white);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s, transform 0.1s;
         }
 
-        button:hover {
-            background-color: darkgreen;
+        button:hover { background: var(--teal-dark); }
+        button:active { transform: scale(0.98); }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 22px 0;
         }
+
+        .section-title {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .footer-link a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link a:hover { text-decoration: underline; }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
+<header>
+    <h2>HOSPITAL MANAGEMENT SYSTEM</h2>
+    <a href="index.html">&#8592; HOME</a>
+</header>
+
+<div class="main">
+    <div class="form-box">
         <h2>Doctor Registration</h2>
+        <p>Fill in the details below to register a new doctor.</p>
 
-        <form method="POST" action="doctor_registration.php">
+        <form method="post" action="doctor_registration.php">
 
-            <label>ID:</label>
-            <input type="text" name="id" placeholder="Enter ID">
+            <div class="section-title">Account Info</div>
 
-            <label>Password:</label>
-            <input type="password" name="password" placeholder="Enter Password">
-
-            <label>Doctor Name:</label>
-            <input type="text" name="name" placeholder="Enter name">
-
-            <label>Specialization:</label>
-            <input type="text" name="dept" placeholder="e.g. Cardiology">
-
-            <label>Experience (Years):</label>
-            <input type="number" name="exp" placeholder="e.g. 5">
-
-            <label>Phone:</label>
-            <input type="text" name="phone" placeholder="Enter phone number">
-
-            <label>Email:</label>
-            <input type="email" name="email"  placeholder="Enter email">
-
-            <label>Availability:</label>
-            <select name="avail">
-                <option>Morning</option>
-                <option>Evening</option>
-                <option>Full Day</option>
-            </select>
-
-            <label>Timing:</label>
-            <div class="time-group">
-                <input type="time"> 
-                <input type="time">
+            <div class="field">
+                <label for="id">Doctor ID</label>
+                <input type="text" id="id" name="id" placeholder="Enter unique ID" required>
             </div>
 
-          
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
 
-            <button type="submit" name="add">Register</button>
+            <hr class="divider">
+            <div class="section-title">Personal & Professional</div>
+
+            <div class="field">
+                <label for="name">Doctor Name</label>
+                <input type="text" id="name" name="name" placeholder="Full name" required>
+            </div>
+
+            <div class="field">
+                <label for="dept">Specialization</label>
+                <input type="text" id="dept" name="dept" placeholder="e.g. Cardiology" required>
+            </div>
+
+            <div class="field">
+                <label for="exp">Experience (Years)</label>
+                <input type="number" id="exp" name="exp" placeholder="e.g. 5" min="0" max="60" required>
+            </div>
+
+            <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" placeholder="10-digit number" required>
+            </div>
+
+            <div class="field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="doctor@example.com" required>
+            </div>
+
+            <hr class="divider">
+            <div class="section-title">Availability</div>
+
+            <div class="field">
+                <label for="avail">Shift</label>
+                <select id="avail" name="avail" required>
+                    <option value="Morning">Morning</option>
+                    <option value="Evening">Evening</option>
+                    <option value="Full Day">Full Day</option>
+                </select>
+            </div>
+
+            <div class="time-row">
+                <label>Timing (From  To)</label>
+                <div class="time-group">
+                    <div class="field">
+                        <input type="time" name="time_from" required>
+                    </div>
+                    <div class="field">
+                        <input type="time" name="time_to" required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" name="add">Register Doctor</button>
         </form>
+
+        <div class="footer-link">
+            Already registered? <a href="doctor_login.html">Login here</a>
+        </div>
     </div>
+</div>
 
 </body>
 </html>
