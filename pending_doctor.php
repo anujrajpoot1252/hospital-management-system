@@ -49,6 +49,9 @@ $result = mysqli_query($conn, $sql);
                 <a href="approve_doctor.php?id=<?php echo $row['ID']; ?>" 
                    class="approve-btn"
                    onclick="return confirm('Approve this doctor?')"> Approve </a>
+                <a href="reject_doctor.php?id=<?php echo $row['ID']; ?>" 
+                   class="reject-btn"
+                   onclick="return confirm('Reject this doctor?')"> Reject </a>
             </td>
         </tr>
         <?php } ?>
