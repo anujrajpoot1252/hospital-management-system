@@ -1,18 +1,38 @@
 <?php
+ob_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
 $conn = mysqli_connect("localhost", "root", "", "admin");
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$result = mysqli_query($conn, "SELECT * FROM doctor WHERE Status='pending'");
-while ($row = mysqli_fetch_assoc($result)) {
-    $id = $row['ID'];
-    $sql = "DELETE FROM doctor WHERE ID='$id'";
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Doctor rejected successfully!')</script>";
-        header("Location: admin_dashboard.php");
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+    $id = $_GET['id'];
+
+    $stmt = $conn->prepare("DELETE FROM doctor WHERE ID=?");
+    $stmt->bind_param("s", $id);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        mysqli_close($conn);
+        ob_end_clean();
+        header("Location: pending_doctor.php?rejected=1");
+        exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo "Error: " . $stmt->error;
     }
+
+    $stmt->close();
+
+} else {
+    echo "Invalid Doctor ID";
 }
+
+mysqli_close($conn);
+ob_end_flush();
+?>
