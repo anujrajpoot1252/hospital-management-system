@@ -9,8 +9,29 @@ $conn = mysqli_connect("localhost", "root", "", "admin");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = $_GET['id'];
 
-$sql = "SELECT * FROM doctor WHERE Status='approved'";
+    $stmt = $conn->prepare("UPDATE doctor SET status='approved' WHERE ID=? AND status='pending'");
+    $stmt->bind_param("s", $id);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        mysqli_close($conn);
+
+        header("Location: pending_doctor.php?success=1");
+        exit();
+
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+} else {
+    echo "Invalid Doctor ID";
+}
+
+$sql = "SELECT * FROM doctor WHERE status='approved'";
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -38,13 +59,13 @@ $result = mysqli_query($conn, $sql);
 
 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
-<td><?php echo $row['id']; ?></td>
-<td><?php echo $row['Name']; ?></td>
-<td><?php echo $row['Department']; ?></td>
-<td><?php echo $row['Experience']; ?></td>
-<td><?php echo $row['Phone']; ?></td>
-<td><?php echo $row['Email']; ?></td>
-<td><?php echo $row['Availability']; ?></td>
+<td><?php echo htmlspecialchars($row['ID']); ?></td>
+<td><?php echo htmlspecialchars($row['Name']); ?></td>
+<td><?php echo htmlspecialchars($row['Department']); ?></td>
+<td><?php echo htmlspecialchars($row['Experience']); ?></td>
+<td><?php echo htmlspecialchars($row['Phone']); ?></td>
+<td><?php echo htmlspecialchars($row['Email']); ?></td>
+<td><?php echo htmlspecialchars($row['Availability']); ?></td>
 </tr>
 <?php } ?>
 
