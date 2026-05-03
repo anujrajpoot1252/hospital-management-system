@@ -38,15 +38,87 @@ $result = mysqli_query($conn, $sql);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Approved Doctors</title>
+<title>Approved Doctors</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #00bfff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: white;
+    color: #00bfff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #e0f7ff;
+}
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.table-wrapper {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f0f0f0;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+</style>
+
 </head>
 <body>
 
-<h2>Approved Doctors</h2>
-<a href="admin_dashboard.php">⬅ Back to Dashboard</a><br><br>
+<div class="header">
+    <h1>Hospital Management System</h1>
+    <h2>Approved Doctors</h2>
+    <a href="admin_dashboard.php" class="back-link">← Back To Dashboard</a>
+</div>
+
+<div class="container">
+<div class="table-wrapper">
 
 <?php if (mysqli_num_rows($result) > 0) { ?>
-<table border="1" cellpadding="10">
+
+<table>
 <tr>
 <th>ID</th>
 <th>Name</th>
@@ -70,9 +142,13 @@ $result = mysqli_query($conn, $sql);
 <?php } ?>
 
 </table>
+
 <?php } else { ?>
-<p>No approved doctors found.</p>
+<p class="no-data">No approved doctors found.</p>
 <?php } ?>
+
+</div>
+</div>
 
 </body>
 </html>
