@@ -23,7 +23,7 @@ $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 
 $name = htmlspecialchars($row['Name'] ?? '');
-$age = (int)($row['Age'] ?? 0);
+$age = htmlspecialchars($row['Age'] ?? '');
 $gender = htmlspecialchars($row['gender'] ?? '');
 $phone = htmlspecialchars($row['Phone'] ?? '');
 $disease = htmlspecialchars($row['disease'] ?? '');
@@ -72,21 +72,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!empty($_POST['doctor_id']) && !empty($_POST['appointment_time'])) {
         $doctor_id = $_POST['doctor_id'];
-        $appointment_time = date("Y-m-d H:i:s", strtotime($_POST['appointment_time']));
+        $appointment_time = $_POST['appointment_time'];
 
         // Validate time
-        $appt_datetime = new DateTime($appointment_time);
-        $appt_time = $appt_datetime->format('H:i');
-        $from_time = DateTime::createFromFormat('H:i:s', $time_from);
-        $to_time = DateTime::createFromFormat('H:i:s', $time_to);
+        $appt_datetime = strtotime($appointment_time);
+        $appt_time = date('H:i', $appt_datetime);
+        $from_time = strtotime($time_from);
+        $to_time = strtotime($time_to);
 
-        if ($appt_time >= $from_time->format('H:i') && $appt_time <= $to_time->format('H:i')) {
+        if ($appt_time >= date('H:i', $from_time) && $appt_time <= date('H:i', $to_time)) {
 
+        
+        $priority = $_POST['priority'] ?? ''; 
+        $high = ["heart pain","chest pain","breathing problem","accident","heavy bleeding"];
+        $moderate = ["high fever","vomiting","infection"];
+
+        if(in_array(strtolower($disease), $high)){
+        $priority = "high";
+    }
+        elseif(in_array(strtolower($disease), $moderate)){
+        $priority = "moderate";
+    }
+        else{
+        $priority = "normal";
+    }
+     
+    
             $insert = $conn->prepare("INSERT INTO appointment 
-(doctor_id, patient_email, name, age, gender, phone, disease, appointment_time) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+(doctor_id, patient_email, name, age, gender, phone, disease, appointment_time, priority) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            $insert->bind_param("sssisiss", 
+            $insert->bind_param("sssisssss", 
                 $doctor_id, 
                 $email, 
                 $name, 
@@ -94,7 +110,8 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $gender, 
                 $phone, 
                 $disease, 
-                $appointment_time
+                $appointment_time,
+                $priority
             );
 
             if ($insert->execute()) {
