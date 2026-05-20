@@ -83,19 +83,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($appt_time >= date('H:i', $from_time) && $appt_time <= date('H:i', $to_time)) {
 
         
-        $priority = $_POST['priority'] ?? ''; 
-        $high = ["heart pain","chest pain","breathing problem","accident","heavy bleeding"];
-        $moderate = ["high fever","vomiting","infection"];
-
-        if(in_array(strtolower($disease), $high)){
-        $priority = "high";
-    }
-        elseif(in_array(strtolower($disease), $moderate)){
-        $priority = "moderate";
-    }
-        else{
+        $disease_lower = strtolower($disease);
         $priority = "normal";
-    }
+
+        $high_keywords = ["heart", "chest pain", "breathing", "accident", "bleeding", "emergency", "stroke", "attack", "severe"];
+        $moderate_keywords = ["fever", "vomiting", "infection", "pain", "fracture", "injury"];
+
+        foreach ($high_keywords as $keyword) {
+            if (strpos($disease_lower, $keyword) !== false) {
+                $priority = "high";
+                break;
+            }
+        }
+
+        if ($priority === "normal") {
+            foreach ($moderate_keywords as $keyword) {
+                if (strpos($disease_lower, $keyword) !== false) {
+                    $priority = "moderate";
+                    break;
+                }
+            }
+        }
      
     
             $insert = $conn->prepare("INSERT INTO appointment 
