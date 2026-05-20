@@ -10,5 +10,6 @@ CREATE TABLE `appointment` (
   `disease` varchar(255) DEFAULT NULL,
   `appointment_time` datetime DEFAULT NULL,
   `status` enum('pending','completed','cancelled') NOT NULL DEFAULT 'pending',
+  `priority` varchar(20) DEFAULT 'normal',
   PRIMARY KEY (`id`)
-) 
+)
