@@ -42,7 +42,7 @@ $appointment_time = htmlspecialchars($datetime);
 /*  DISEASE → DEPARTMENT */
 $disease_lower = strtolower($disease);
 
-if (strpos($disease_lower, 'heart') !== false) {
+if (strpos($disease_lower, 'heart pain  ') !== false || strpos($disease_lower, 'chest pain') !== false || strpos($disease_lower, 'breathing') !== false || strpos($disease_lower, 'accident') !== false || strpos($disease_lower, 'bleeding') !== false || strpos($disease_lower, 'emergency') !== false || strpos($disease_lower, 'stroke') !== false || strpos($disease_lower, 'attack') !== false) {
     $department = "Cardiology";
 } elseif (strpos($disease_lower, 'skin') !== false) {
     $department = "Dermatology";
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $disease_lower = strtolower($disease);
         $priority = "normal";
 
-        $high_keywords = ["heart", "chest pain", "breathing", "accident", "bleeding", "emergency", "stroke", "attack", "severe"];
+        $high_keywords = ["heart pain", "chest pain", "breathing", "accident", "bleeding", "emergency", "stroke", "attack",];
         $moderate_keywords = ["fever", "vomiting", "infection", "pain", "fracture", "injury"];
 
         foreach ($high_keywords as $keyword) {
