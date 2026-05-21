@@ -11,6 +11,18 @@
             background:#f5f7ff;
         }
 
+        .top-bar{
+            background:#045cff;
+            padding:15px 30px;
+        }
+
+        .top-bar a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+            font-weight:bold;
+        }
+
         .contact{
             padding:60px 20px;
         }
@@ -53,38 +65,12 @@
             margin-bottom:10px;
         }
 
-        .contact-form{
-            margin-top:50px;
-            display:flex;
-            flex-direction:column;
-            gap:20px;
-            align-items:center;
-        }
-
-        .contact-form input,
-        .contact-form textarea{
-            width:80%;
-            max-width:600px;
-            padding:15px;
-            border:1px solid #ccc;
-            border-radius:8px;
-            font-size:16px;
-            outline:none;
-        }
-
-        .contact-form textarea{
-            height:150px;
-            resize:none;
-        }
-
-        .contact-form button{
-            padding:15px 40px;
-            border:none;
+        .footer{
             background:#045cff;
             color:white;
-            font-size:18px;
-            border-radius:8px;
-            cursor:pointer;
+            text-align:center;
+            padding:15px;
+            margin-top:50px;
         }
 
     </style>
@@ -92,6 +78,10 @@
 </head>
 
 <body>
+
+<div class="top-bar">
+    <a href="index.html">Home</a>
+</div>
 
 <section class="contact">
 
@@ -123,21 +113,13 @@
 
         </div>
 
-        <form class="contact-form">
-
-            <input type="text" placeholder="Enter Your Name" required>
-
-            <input type="email" placeholder="Enter Your Email" required>
-
-            <textarea placeholder="Enter Your Message"></textarea>
-
-            <button type="submit">Send Message</button>
-
-        </form>
-
     </div>
 
 </section>
+
+<div class="footer">
+    © 2026 Hospital Management System | All Rights Reserved
+</div>
 
 </body>
 </html>
