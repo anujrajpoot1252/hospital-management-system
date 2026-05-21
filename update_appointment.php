@@ -18,7 +18,12 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
         $stmt->bind_param("sis", $status, $id, $doctor_id);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Appointment marked as $status'); window.location.href='doctor_dashboard.php';</script>";
+            if ($status === 'completed') {
+                $alert_msg = "Appointment successfully complete ho gayi hai! Ab iske baad koi doosra appointment liya ja sakta hai.\\n(Appointment completed successfully! Another appointment can now be booked.)";
+            } else {
+                $alert_msg = "Appointment has been successfully cancelled.";
+            }
+            echo "<script>alert(\"$alert_msg\"); window.location.href='doctor_dashboard.php';</script>";
         } else {
             echo "<script>alert('Error updating appointment'); window.location.href='doctor_dashboard.php';</script>";
         }
