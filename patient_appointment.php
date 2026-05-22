@@ -42,9 +42,10 @@ $appointment_time = htmlspecialchars($datetime);
 /*  DISEASE → DEPARTMENT */
 $disease_lower = strtolower($disease);
 
-if (strpos($disease_lower, 'heart pain  ') !== false || strpos($disease_lower, 'chest pain') !== false || strpos($disease_lower, 'breathing') !== false || strpos($disease_lower, 'accident') !== false || strpos($disease_lower, 'bleeding') !== false || strpos($disease_lower, 'emergency') !== false || strpos($disease_lower, 'stroke') !== false || strpos($disease_lower, 'attack') !== false) {
+if (strpos($disease_lower, 'heart pain') !== false || strpos($disease_lower, 'chest pain') !== false || strpos($disease_lower, 'breathing') !== false || strpos($disease_lower, 'accident') !== false || strpos($disease_lower, 'bleeding') !== false || strpos($disease_lower, 'emergency') !== false || strpos($disease_lower, 'stroke') !== false || strpos($disease_lower, 'attack') !== false) {
     $department = "Cardiology";
-} elseif (strpos($disease_lower, 'skin') !== false) {
+
+    } elseif (strpos($disease_lower, 'skin') !== false) {
     $department = "Dermatology";
 } elseif (strpos($disease_lower, 'eye') !== false) {
     $department = "Ophthalmology";
