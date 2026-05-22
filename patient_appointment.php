@@ -73,60 +73,76 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!empty($_POST['doctor_id']) && !empty($_POST['appointment_time'])) {
         $doctor_id = $_POST['doctor_id'];
-        $appointment_time = $_POST['appointment_time'];
+        
+        // Standardize time format to Y-m-d H:i:s
+        $appointment_time = date('Y-m-d H:i:s', strtotime($_POST['appointment_time']));
 
-        // Validate time
+        // Validate time within doctor's available hours
         $appt_datetime = strtotime($appointment_time);
         $appt_time = date('H:i', $appt_datetime);
         $from_time = strtotime($time_from);
         $to_time = strtotime($time_to);
 
         if ($appt_time >= date('H:i', $from_time) && $appt_time <= date('H:i', $to_time)) {
+            
+            // Check if the time slot is already booked for this doctor (Slot Check)
+            $check = $conn->prepare("SELECT id FROM appointment WHERE doctor_id = ? AND appointment_time = ? AND status = 'pending'");
+            $check->bind_param("ss", $doctor_id, $appointment_time);
+            $check->execute();
+            $check_res = $check->get_result();
 
-        
-        $disease_lower = strtolower($disease);
-        $priority = "normal";
-
-        $high_keywords = ["heart pain", "chest pain", "breathing", "accident", "bleeding", "emergency", "stroke", "attack",];
-        $moderate_keywords = ["fever", "vomiting", "infection", "pain", "fracture", "injury"];
-
-        foreach ($high_keywords as $keyword) {
-            if (strpos($disease_lower, $keyword) !== false) {
-                $priority = "high";
-                break;
-            }
-        }
-
-        if ($priority === "normal") {
-            foreach ($moderate_keywords as $keyword) {
-                if (strpos($disease_lower, $keyword) !== false) {
-                    $priority = "moderate";
-                    break;
-                }
-            }
-        }
-     
-    
-            $insert = $conn->prepare("INSERT INTO appointment 
-(doctor_id, patient_email, name, age, gender, phone, disease, appointment_time, priority) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-            $insert->bind_param("sssisssss", 
-                $doctor_id, 
-                $email, 
-                $name, 
-                $age, 
-                $gender, 
-                $phone, 
-                $disease, 
-                $appointment_time,
-                $priority
-            );
-
-            if ($insert->execute()) {
-                $message = "Appointment booked successfully";
+            if ($check_res->num_rows > 0) {
+                $message = "Yeh time slot pehle se hi kisi aur patient ke liye booked hai. Kripya doosra time select karein! (This time slot is already booked for this doctor. Please select another time.)";
             } else {
-                $message = "Error booking appointment";
+                $disease_lower = strtolower($disease);
+                $priority = "normal";
+
+                // Fetch dynamic priorities from disease_priority table
+                $prio_stmt = $conn->query("SELECT disease_name, priority FROM disease_priority");
+                $priorities_list = [];
+                while ($prow = $prio_stmt->fetch_assoc()) {
+                    $priorities_list[] = $prow;
+                }
+
+                // Match high priority first
+                foreach ($priorities_list as $item) {
+                    if ($item['priority'] === 'high' && strpos($disease_lower, strtolower($item['disease_name'])) !== false) {
+                        $priority = "high";
+                        break;
+                    }
+                }
+
+                // Match moderate priority second
+                if ($priority === "normal") {
+                    foreach ($priorities_list as $item) {
+                        if ($item['priority'] === 'moderate' && strpos($disease_lower, strtolower($item['disease_name'])) !== false) {
+                            $priority = "moderate";
+                            break;
+                        }
+                    }
+                }
+
+                $insert = $conn->prepare("INSERT INTO appointment 
+    (doctor_id, patient_email, name, age, gender, phone, disease, appointment_time, priority) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+                $insert->bind_param("sssisssss", 
+                    $doctor_id, 
+                    $email, 
+                    $name, 
+                    $age, 
+                    $gender, 
+                    $phone, 
+                    $disease, 
+                    $appointment_time,
+                    $priority
+                );
+
+                if ($insert->execute()) {
+                    $message = "Appointment booked successfully";
+                } else {
+                    $message = "Error booking appointment";
+                }
             }
         } else {
             $message = "Selected time is not within doctor's available hours";
