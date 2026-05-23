@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'config.php';
+require_once 'mailer.php';
 
 if (isset($_POST['add'])) {
     // Auto-generate Doctor ID starting from hms2601
@@ -14,33 +15,54 @@ if (isset($_POST['add'])) {
     }
     $id = $next_id;
 
-    $password  = trim($_POST['password']);
+    $password  = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 8); // Generate random 8 char password
     $name      = trim($_POST['name']);
     $dept      = trim($_POST['dept']);
     $exp       = intval($_POST['exp']);
     $phone     = trim($_POST['phone']);
-    $email     = trim($_POST['email']);
+    $email     = strtolower(trim($_POST['email']));
     $avail     = $_POST['avail'];
     $time_from = $_POST['time_from'];
     $time_to   = $_POST['time_to'];
     $user_otp  = isset($_POST['otp']) ? trim($_POST['otp']) : '';
 
     // Final Security Check for OTP
-    if (!isset($_SESSION['otp']) || $_SESSION['otp'] != $user_otp || $_SESSION['otp_email'] != $email) {
-        echo "<script>alert('Security Error: Email not verified!'); window.history.back();</script>";
+    if (
+        !isset($_SESSION['otp_verified'])
+        || $_SESSION['otp_verified'] !== true
+        || !isset($_SESSION['otp_email'])
+        || strtolower($_SESSION['otp_email']) !== $email
+    ) {
+        echo "<script>alert('app ka registration  successful ho gya hai admin approverl kre ga '); window.history.back();</script>";
         exit();
     }
 
     // Clear session after use
     unset($_SESSION['otp']);
     unset($_SESSION['otp_email']);
+    unset($_SESSION['otp_verified']);
 
     $status = 'pending';
     $stmt = $conn->prepare("INSERT INTO doctor (ID, Password, Name, Department, Experience, Phone, Email, Availability, TimeFrom, TimeTo, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssssssss", $id, $password, $name, $dept, $exp, $phone, $email, $avail, $time_from, $time_to, $status);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Registration Successful! Your ID is: $id. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
+        $subject = "Your HMS Doctor Account Details";
+        $message = "<h2>Doctor Registration Successful</h2>
+                    <p>Hello $name,</p>
+                    <p>Your doctor account has been created successfully.</p>
+                    <p><strong>Doctor ID:</strong> $id</p>
+                    <p><strong>Temporary Password:</strong> $password</p>
+                    <p>Please use these credentials to log in after admin approval.</p>
+                    <p>Thank you!</p>";
+
+        $mail_sent = sendHMSMail($email, $subject, $message);
+
+        if ($mail_sent) {
+            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your temporary password has been sent to $email. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
+        } else {
+            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your temporary password is: $password. Email sending failed, please save this password carefully. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
+        }
     } else {
         echo "Error: " . $stmt->error;
     }
