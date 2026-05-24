@@ -154,7 +154,7 @@ if ($result->num_rows > 0) {
 
     <?php while($row = $result->fetch_assoc()) { ?>
     <tr>
-        <td><?php echo $row['id']; ?></td>
+        <td><?php echo $row['doctor_id']; ?></td>
         <td><?php echo htmlspecialchars($row['patient_email']); ?></td>
         <td><?php echo htmlspecialchars($row['name']); ?></td>
         <td><?php echo htmlspecialchars($row['age']); ?></td>
