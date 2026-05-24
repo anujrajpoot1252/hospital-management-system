@@ -15,7 +15,9 @@ if (isset($_POST['add'])) {
     }
     $id = $next_id;
 
-    $password  = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 8); // Generate random 8 char password
+    // Generate random 8-character password
+    $password = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 8);
+
     $name      = trim($_POST['name']);
     $dept      = trim($_POST['dept']);
     $exp       = intval($_POST['exp']);
@@ -47,21 +49,21 @@ if (isset($_POST['add'])) {
     $stmt->bind_param("sssssssssss", $id, $password, $name, $dept, $exp, $phone, $email, $avail, $time_from, $time_to, $status);
 
     if ($stmt->execute()) {
-        $subject = "Your HMS Doctor Account Details";
+        $subject = "Your HMS Doctor Account Details - Pending Approval";
         $message = "<h2>Doctor Registration Successful</h2>
                     <p>Hello $name,</p>
-                    <p>Your doctor account has been created successfully.</p>
+                    <p>Your doctor account has been created successfully and is now pending admin approval.</p>
                     <p><strong>Doctor ID:</strong> $id</p>
-                    <p><strong>Temporary Password:</strong> $password</p>
-                    <p>Please use these credentials to log in after admin approval.</p>
+                    <p><strong>Password:</strong> $password</p>
+                    <p>Please keep this password safe. You can log in using these credentials once the administrator approves your account.</p>
                     <p>Thank you!</p>";
 
         $mail_sent = sendHMSMail($email, $subject, $message);
 
         if ($mail_sent) {
-            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your temporary password has been sent to $email. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
+            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your password has been sent to $email. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
         } else {
-            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your temporary password is: $password. Email sending failed, please save this password carefully. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
+            echo "<script>alert('Registration Successful! Your Doctor ID is: $id. Your password is: $password. Email sending failed, please save this password. Wait for Admin approval.'); window.location.href='doctor_login.html';</script>";
         }
     } else {
         echo "Error: " . $stmt->error;
