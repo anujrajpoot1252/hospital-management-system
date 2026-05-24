@@ -22,7 +22,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $subject = "Account Approved - HMS";
             $message = "<h3>Congratulations, Dr. " . $doctor['Name'] . "!</h3>
                         <p>Your account has been approved by the administrator.</p>
-                        <p>You can now log in to your dashboard using your Doctor ID: <b>$id</b></p>
+                        <p>You can now log in to your dashboard using your Doctor ID: <b>$id</b> and the password generated during registration.</p>
+                        <br>
                         <a href='http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/doctor_login.html' class='btn'>Login Now</a>";
             sendHMSMail($doctor['Email'], $subject, $message);
         }
